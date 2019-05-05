@@ -11,18 +11,25 @@ const showCards = () => {
   for (const input of inputs) {
     const inputValue = input.value;
     const inputChecked = input.checked;
+    list.innerHTML = '';
     if (inputChecked === true) {
       fetch(`${API}${inputValue}.json`)
         .then(response => response.json())
         .then(data => {
-        console.log(data);
         for (const item of data) {
-          const newItem = document.createElement('li');
+          const itemFront = document.createElement('li');
+          itemFront.classList.add('cards__front');
           const cardFront = document.createElement('img');
+          cardFront.classList.add('hidden');
           cardFront.src = item.image;
-
-          list.appendChild(newItem);
-          newItem.appendChild(cardFront);
+          const itemBack = document.createElement('li');
+          itemBack.classList.add('cards__back');
+          const cardBack = document.createElement('img');
+          cardBack.src = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB'
+          list.appendChild(itemFront);
+          itemFront.appendChild(cardFront);
+          list.appendChild(itemBack);
+          itemBack.appendChild(cardBack);
         }
       })
     }
