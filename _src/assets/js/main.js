@@ -16,21 +16,17 @@ const showCards = () => {
         .then(response => response.json())
         .then(data => {
         console.log(data);
+        for (const item of data) {
+          const newItem = document.createElement('li');
+          const cardFront = document.createElement('img');
+          cardFront.src = item.image;
+
+          list.appendChild(newItem);
+          newItem.appendChild(cardFront);
+        }
       })
     }
   }
 }
-//
-//     for (const item of data) {
-//       const newItem = document.createElement('li');
-//       const cardFront = document.createElement('img');
-//       cardFront.src = item.image;
-
-//       list.appendChild(newItem);
-//       newItem.appendChild(cardFront);
-//     }
-//   })
- //}
-
 
 button.addEventListener('click', showCards);
