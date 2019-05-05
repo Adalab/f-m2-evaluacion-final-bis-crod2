@@ -12,7 +12,7 @@ const showCards = () => {
     const inputValue = input.value;
     const inputChecked = input.checked;
     if (inputChecked === true) {
-      fetch(`${API}${inputValue}`)
+      fetch(`${API}${inputValue}.json`)
         .then(response => response.json())
         .then(data => {
         console.log(data);
