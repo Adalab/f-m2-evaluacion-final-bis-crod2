@@ -6,7 +6,6 @@ const button = document.querySelector('.btn');
 const list = document.querySelector('.page__cards');
 let value;
 const API = 'https://raw.githubusercontent.com/Adalab/cards-data/master/';
-let selectedCards = [];
 
 const changeCards = event => {
   const frontCards = event.currentTarget.querySelector('.front__container');
@@ -15,6 +14,22 @@ const changeCards = event => {
   frontCards.classList.remove('hidden');
   backCards.classList.add('hidden');
   }
+}
+
+const infoValue = () => {
+  const dataInfo = localStorage.getItem('saved__data');
+  if (dataInfo === null){
+    const inputFour = document.getElementById('number-4');
+    inputFour.checked = true;
+  } else {
+      for (const input of inputs) {
+        if (input.value === dataInfo) {
+          input.checked = true;
+        } else {
+          input.checked = false;
+        }
+      }
+    }
 }
 
 const showCards = () => {
@@ -52,3 +67,5 @@ const showCards = () => {
 }
 
 button.addEventListener('click', showCards);
+
+infoValue();
