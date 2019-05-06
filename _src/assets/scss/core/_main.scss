@@ -1,10 +1,19 @@
 body {
 	background-color: $color-white;
   height: 100vh;
-  margin: 0;
+  margin: 0px;
+  padding: 50px;
+}
+
+.page__container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.page__form {
+  margin: 20px;
 }
 
 .page__cards {
@@ -13,6 +22,26 @@ body {
   list-style: none;
 }
 
+.cards__item {
+  margin: 10px;
+  border: 2px solid rebeccapurple;
+}
+
 .hidden {
   display: none;
+}
+
+.back__container {
+  height: 195px;
+  width: 160px;
+}
+
+.front__container {
+  height: 195px;
+  width: 160px;
+}
+
+.front__img {
+  height: 195px;
+  width: 160px;
 }

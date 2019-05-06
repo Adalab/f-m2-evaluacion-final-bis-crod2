@@ -53,10 +53,12 @@ const showCards = () => {
         const cardsContainerBack = document.createElement('div');
         cardsContainerBack.classList.add('back__container');
         const cardBack = document.createElement('img');
+        cardBack.classList.add('back__img');
         cardBack.src = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
         const cardsContainerFront = document.createElement('div');
         cardsContainerFront.classList.add('front__container', 'hidden');
         const cardFront = document.createElement('img');
+        cardFront.classList.add('front__img');
         cardFront.src = item.image;
         cardsContainerBack.appendChild(cardBack);
         cardsItem.appendChild(cardsContainerBack);
