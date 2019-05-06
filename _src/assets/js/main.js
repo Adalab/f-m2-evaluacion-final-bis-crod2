@@ -13,6 +13,9 @@ const changeCards = event => {
   if (frontCards.classList.contains('hidden') === true) {
   frontCards.classList.remove('hidden');
   backCards.classList.add('hidden');
+  } else {
+    frontCards.classList.add('hidden');
+    backCards.classList.remove('hidden');
   }
 }
 
