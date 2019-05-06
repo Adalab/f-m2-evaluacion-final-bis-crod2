@@ -6,6 +6,7 @@ const button = document.querySelector('.btn');
 const list = document.querySelector('.page__cards');
 let value;
 const API = 'https://raw.githubusercontent.com/Adalab/cards-data/master/';
+let selectedCards = [];
 
 const changeCards = event => {
   const frontCards = event.currentTarget.querySelector('.front__container');
@@ -47,6 +48,7 @@ const showCards = () => {
         list.appendChild(cardsItem);
       }
     });
+    localStorage.setItem('saved__data', value);
 }
 
 button.addEventListener('click', showCards);
