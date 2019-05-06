@@ -4,8 +4,17 @@ const title = document.querySelector('.page__title');
 const inputs = document.querySelectorAll('.input');
 const button = document.querySelector('.btn');
 const list = document.querySelector('.page__cards');
-
+let value;
 const API = 'https://raw.githubusercontent.com/Adalab/cards-data/master/';
+
+const changeCards = event => {
+  const frontCards = event.currentTarget.querySelector('.front__container');
+  const backCards = event.currentTarget.querySelector('.back__container');
+  if (frontCards.classList.contains('hidden') === true) {
+  frontCards.classList.remove('hidden');
+  backCards.classList.add('hidden');
+  }
+}
 
 const showCards = () => {
   for (const input of inputs) {
@@ -13,27 +22,31 @@ const showCards = () => {
     const inputChecked = input.checked;
     list.innerHTML = '';
     if (inputChecked === true) {
-      fetch(`${API}${inputValue}.json`)
-        .then(response => response.json())
-        .then(data => {
-        for (const item of data) {
-          const itemFront = document.createElement('li');
-          itemFront.classList.add('cards__front');
-          const cardFront = document.createElement('img');
-          cardFront.classList.add('hidden');
-          cardFront.src = item.image;
-          const itemBack = document.createElement('li');
-          itemBack.classList.add('cards__back');
-          const cardBack = document.createElement('img');
-          cardBack.src = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB'
-          list.appendChild(itemFront);
-          itemFront.appendChild(cardFront);
-          list.appendChild(itemBack);
-          itemBack.appendChild(cardBack);
-        }
-      })
+      value = inputValue;
     }
   }
+  fetch(`${API}${value}.json`)
+    .then(response => response.json())
+    .then(data => {
+      for (const item of data) {
+        const cardsItem = document.createElement('li');
+        cardsItem.classList.add('cards__item');
+        const cardsContainerBack = document.createElement('div');
+        cardsContainerBack.classList.add('back__container');
+        const cardBack = document.createElement('img');
+        cardBack.src = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
+        const cardsContainerFront = document.createElement('div');
+        cardsContainerFront.classList.add('front__container', 'hidden');
+        const cardFront = document.createElement('img');
+        cardFront.src = item.image;
+        cardsContainerBack.appendChild(cardBack);
+        cardsItem.appendChild(cardsContainerBack);
+        cardsItem.addEventListener('click', changeCards);
+        cardsContainerFront.appendChild(cardFront);
+        cardsItem.appendChild(cardsContainerFront);
+        list.appendChild(cardsItem);
+      }
+    });
 }
 
 button.addEventListener('click', showCards);
