@@ -35,6 +35,14 @@ const infoValue = () => {
     }
 }
 
+/* Get favs border
+function getFavs(event, arr) {
+  if (arr === true) {
+    event.currentTarget.classList.add('get__fav');
+  }
+}
+*/
+
 const showCards = () => {
   for (const input of inputs) {
     const inputValue = input.value;
@@ -50,6 +58,9 @@ const showCards = () => {
       for (const item of data) {
         const cardsItem = document.createElement('li');
         cardsItem.classList.add('cards__item');
+        /* Get favs border
+        cardsItem.addEventListener('click', function(){getFavs(event, item.fav)});
+        */
         const cardsContainerBack = document.createElement('div');
         cardsContainerBack.classList.add('back__container');
         const cardBack = document.createElement('img');
@@ -60,6 +71,14 @@ const showCards = () => {
         const cardFront = document.createElement('img');
         cardFront.classList.add('front__img');
         cardFront.src = item.image;
+
+        /* Get Pokemon's names and print in console
+        const pokemonTitle = document.createElement('h2');
+        const pokemonName = document.createTextNode(item.name);
+        pokemonTitle.appendChild(pokemonName);
+        cardsContainerFront.appendChild(pokemonTitle);
+        */
+
         cardsContainerBack.appendChild(cardBack);
         cardsItem.appendChild(cardsContainerBack);
         cardsItem.addEventListener('click', changeCards);
