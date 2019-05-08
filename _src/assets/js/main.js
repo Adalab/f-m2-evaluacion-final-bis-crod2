@@ -6,6 +6,15 @@ const button = document.querySelector('.btn');
 const list = document.querySelector('.page__cards');
 let value;
 const API = 'https://raw.githubusercontent.com/Adalab/cards-data/master/';
+const logButton = document.querySelector('.logButton');
+let dataInfo = [];
+
+const logPairNumber = (arr) => {
+  console.log(arr);
+  for (const item of arr) {
+    console.log(item.pair);
+  }
+}
 
 const changeCards = event => {
   const frontCards = event.currentTarget.querySelector('.front__container');
@@ -47,6 +56,7 @@ const showCards = () => {
   fetch(`${API}${value}.json`)
     .then(response => response.json())
     .then(data => {
+      dataInfo = data;
       for (const item of data) {
         const cardsItem = document.createElement('li');
         cardsItem.classList.add('cards__item');
@@ -61,6 +71,13 @@ const showCards = () => {
         cardFront.classList.add('front__img');
         cardFront.src = item.image;
 
+        if (item.fav === true) {
+          const favName = document.createElement('h2');
+          const textName = document.createTextNode('favorito');
+          favName.appendChild(textName);
+          cardsItem.appendChild(favName);
+        }
+
         cardsContainerBack.appendChild(cardBack);
         cardsItem.appendChild(cardsContainerBack);
         cardsItem.addEventListener('click', changeCards);
@@ -68,10 +85,12 @@ const showCards = () => {
         cardsItem.appendChild(cardsContainerFront);
         list.appendChild(cardsItem);
       }
+      logButton.addEventListener('click', function() {logPairNumber(data)});
     });
     localStorage.setItem('saved__data', value);
 }
 
 button.addEventListener('click', showCards);
+
 
 infoValue();
