@@ -60,6 +60,7 @@ const showCards = () => {
         const cardFront = document.createElement('img');
         cardFront.classList.add('front__img');
         cardFront.src = item.image;
+
         cardsContainerBack.appendChild(cardBack);
         cardsItem.appendChild(cardsContainerBack);
         cardsItem.addEventListener('click', changeCards);

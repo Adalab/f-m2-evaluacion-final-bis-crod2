@@ -20,6 +20,7 @@ body {
   display: flex;
   align-items: center;
   list-style: none;
+  flex-wrap: wrap;
   padding: 0;
 }
 
@@ -45,4 +46,8 @@ body {
 .front__img {
   height: 195px;
   width: 160px;
+}
+
+.get__fav {
+  border: 5px solid green;
 }
